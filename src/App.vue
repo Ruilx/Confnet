@@ -23,5 +23,8 @@ watch(token, (newValue, oldValue) => {
 </script>
 
 <style scoped>
-
+#app-container{
+  width: 650px;
+  height: 100%;
+}
 </style>

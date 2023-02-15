@@ -1,26 +1,21 @@
 <template>
-<draggable
-  class="container-item"
-  tag="ul"
-  :list="items"
-  :group="{name: 'g1'}"
-  item-key="name"
-  :component-data="{
-    tag: 'ul',
-    type: 'transition-group',
-    name: !drag ? 'flip-list' : null
-  }"
-  v-bind="dragOptions"
-  @start="drag=true"
-  @end="drag=false"
+  <draggable
+      class="container-item"
+      tag="ul"
+      :list="items"
+      :group="{name: 'g1'}"
+      item-key="name"
+      :component-data="{tag: 'div',type: 'transition-group',name: !drag ? 'flip-list' : null}"
+      v-bind="dragOptions"
+      @start="drag=true"
+      @end="drag=false"
   >
-  <template #item="{ element }">
-    <li>
-      <p>{{element.name}}</p>
-      <container-item :items="element.items" />
-    </li>
-  </template>
-</draggable>
+    <template #item="{ element }">
+      <a-card :title="element.name" :bordered="true" size="small" :head-style="{'background-color': '#666666'}" :body-style="{'background-color': '#222222'}">
+        <container-item :items="element.items" />
+      </a-card>
+    </template>
+  </draggable>
 </template>
 
 <script>
@@ -51,7 +46,7 @@ export default {
         animation: 200,
         group: "a1",
         disabled: false,
-        ghostClass: "ghost"
+        ghostClass: "item-ghost"
       }
     }
   }
@@ -61,12 +56,12 @@ export default {
 
 <style scoped>
 .container-item {
-  min-height: 50px;
-  outline: 1px dashed;
+  padding-left: 0;
+  background-color: rgba(111, 111, 111, 0.3)
 }
 
-.ghost{
+.item-ghost{
   opacity: 0.5;
-  background: #c8ebfb;
+  background-color: #eee;
 }
 </style>
