@@ -17,11 +17,12 @@
                 :body-style="{'padding-left':'10px', 'border-left': '#888 solid 5px'}"
                 :head-style="{'border-left': '#888 solid 5px', 'font-size': '80%'}"
                 :style="{'margin-bottom': '10px'}"
+                :class="element.canDrag ? 'r-draggable' : ''"
                 size="small">
                 <container-item :items="element.items"/>
                 <p class="container-suffix">{{ element.suffix }}</p>
             </a-card>
-            <value-item v-else :name="element.name" :value="element.value"/>
+            <value-item v-else :item="element"/>
         </template>
     </draggable>
 </template>
@@ -49,7 +50,8 @@ export default {
                 animation: 200,
                 group: "a1",
                 disabled: false,
-                ghostClass: "item-ghost"
+                ghostClass: "item-ghost",
+                draggable: '.r-draggable'
             }
         }
     },
@@ -64,6 +66,7 @@ export default {
     padding-left: 0;
     min-height: 30px;
     font-family: Consolas, "Microsoft YaHei", monospace;
+    user-select: none;
 }
 
 .container-suffix {

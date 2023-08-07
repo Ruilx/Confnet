@@ -3,34 +3,29 @@
         :hoverable="true"
         :bordered="true"
         :body-style="{padding: 0}"
+        :class="item.canDrag ? 'r-draggable' : ''"
         class="value-item"
     >
-      <span>{{name}}</span> : <span>{{value}}</span>
+        <span>{{ item.name }}</span> : <span>{{ item.value }}</span>
     </a-card>
 </template>
 
 <script>
 
 export default {
-  name: "ValueItem",
-  props: {
-    name: {
-      required: true,
-      type: String,
+    name: "ValueItem",
+    props: {
+        item: {
+            required: true,
+            type: Object,
+        }
     },
-    value: {
-      required: false,
-      type: String,
-      default: "",
-    }
-  },
-  data(){
-    return{
-      drag: false
-    }
-  },
-  computed: {
-  }
+    data() {
+        return {
+            drag: false
+        }
+    },
+    computed: {}
 }
 </script>
 

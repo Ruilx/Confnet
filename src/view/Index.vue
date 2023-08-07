@@ -23,17 +23,20 @@ export default {
                     type: "container",
                     prefix: " {",
                     suffix: "}",
+                    canDrag: false,
                     items: [
                         {
                             name: "listen",
                             type: "value",
                             value: "80 default_server",
-                            suffix: ";"
+                            suffix: ";",
+                            canDrag: true,
                         }, {
                             name: "listen",
                             type: "value",
                             value: "[::]:80 default_server",
-                            suffix: ";"
+                            suffix: ";",
+                            canDrag: true,
                         }, {
                             name: "root",
                             type: "value",
