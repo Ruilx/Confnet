@@ -1,6 +1,6 @@
 <template>
     <draggable
-        class="container-item"
+        class="item-list"
         tag="div"
         :list="items"
         item-key="name"
@@ -19,13 +19,93 @@
                 :style="{'margin-bottom': '10px'}"
                 :class="element.canDrag ? 'r-draggable' : ''"
                 size="small">
-                <container-item :items="element.items"/>
+                <item-list :items="element.items"/>
                 <p class="container-suffix">{{ element.suffix }}</p>
             </a-card>
             <value-item v-else :item="element"/>
         </template>
     </draggable>
 </template>
+
+<script>
+import draggable from 'vuedraggable'
+import ValueItem from "./ValueItem.vue"
+
+export default {
+    name: "ItemList",
+    props: {
+        items: {
+            required: true,
+            type: Array
+        }
+    },
+    components: {
+        draggable,
+        ValueItem,
+    },
+    data() {
+        return {
+            drag: false,
+            dragOptions: {
+                animation: 200,
+                group: {
+                    name: "a1",
+                    pull: 'clone',
+                    put: false,
+                },
+                disabled: false,
+                ghostClass: "item-ghost",
+                draggable: '.r-draggable',
+            }
+
+        }
+    },
+    methods: {},
+    computed: {},
+}
+</script>
+
+
+<!--
+
+
+<script>
+import draggable from 'vuedraggable'
+import ValueItem from "./ValueItem.vue"
+
+export default {
+    name: "ItemList",
+    props: {
+        items: {
+            required: true,
+            type: Array
+        }
+    },
+    components: [
+        draggable,
+        ValueItem,
+    ],
+    data() {
+        return {
+            drag: false,
+            dragOptions: {
+                animation: 200,
+                group: {
+                    name: "g1",
+                    pull: true,
+                    put: false,
+                },
+                disabled: false,
+                ghostClass: "item-ghost",
+                draggable: '.r-draggable',
+            }
+
+        }
+    },
+    methods: {},
+    computed: {},
+}
+</script>
 
 <script>
 import draggable from 'vuedraggable'
@@ -77,4 +157,20 @@ export default {
     opacity: 0.5;
     background-color: #eee;
 }
+</style>
+
+-->
+
+
+
+
+<style scoped>
+.item-list{
+    padding: 8px;
+}
+.item-ghost {
+    opacity: 0.5;
+    background-color: #eee;
+}
+
 </style>
