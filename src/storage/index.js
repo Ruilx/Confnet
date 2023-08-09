@@ -8,33 +8,35 @@ const storage = {
             name: "server",
             type: "container",
             item: {
-                path: "nginx/containers/ServerContainer",
+                module: "common/container",
                 params: {},
             },
             library: {
                 show: false,
             }
         }, {
-            id: 2,
-            name: "listen",
-            type: "value",
-            item: {
-                path: "nginx/values/DoubleValueItem",
-                params: {
-                    name: "listen",
-                    value1type: "int",
-                    value2type: "str",
+            id: 2,  // 数据库中的ID...
+            name: "listen", // 该卡片名称
+            type: "value",  // 该卡片类型
+            item: {         // scene上展示的信息
+                module: "common/value", // modules中需要载入的组件
+                params: {               // 提供的参数
+                    name: "A Container",
                 },
             },
             library: {
-                "name": "listen",
-                "body-style": {
+                "title": "listen",
+                "desc": "This is a listen config",
+                "card-style": {
                     "background-color": "#663399",
                     "color": "#eee"
                 },
-                "desc": "This is a listen config",
                 "cond": {}
             }
         }
     ],
+    modules: {
+        "common/container": "common/containers/CommonContainer",
+        "common/value": "common/values/CommonValue",
+    }
 }
