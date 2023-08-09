@@ -20,29 +20,40 @@
                     <component :is="subItem" :item="e"/>
                 </keep-alive>
             </a-card>
+            <CommonValue v-else :item="e" />
         </template>
 
     </draggable>
 </template>
 
 <script>
-import {defineComponent} from "vue"
+import {defineComponent, defineAsyncComponent, markRaw} from "vue"
 import draggable from "vuedraggable";
+import CommonValue from "../values/CommonValue.vue";
 
 export default defineComponent({
     name: "CommonContainer",
-    components: {draggable},
+    components: {CommonValue, draggable},
     props: {
         items: {required: true, type: Array,}
     },
     data() {
         return {
             dragging: false,
+            subItem: {},
+            options: {
+                animation: 200,
+                group: "a1",
+                disabled: false,
+                ghostClass: "item-ghost",
+                draggable: ".r-draggable"
+            }
         }
     },
     computed: {},
     created() {
-        self.dragging = false,
+        this.dragging = false
+        this.subItem = markRaw(defineAsyncComponent(() => import("../../" + this.item.item.path + ".vue")))
     },
     methods: {
 
@@ -51,6 +62,16 @@ export default defineComponent({
 </script>
 
 <style scoped lang="less">
+.container-item{
+    min-height:30px;
+    user-select: none;
+
+    .r-draggable-card{
+        padding-left: 8px;
+        font-family: Consolas, "Microsoft YaHei", monospace;
+    }
+}
+
 .r-draggable-card {
     margin-bottom: 10px;
 }

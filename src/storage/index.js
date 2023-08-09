@@ -2,13 +2,13 @@ const storage = {
     scene: {
         root: [1],
     },
-    library: [
+    items: [
         {
             id: 1,
             name: "server",
             type: "container",
             item: {
-                path: "components/nginx/containers/ServerContainer",
+                path: "nginx/containers/ServerContainer",
                 params: {},
             },
             library: {
@@ -19,7 +19,7 @@ const storage = {
             name: "listen",
             type: "value",
             item: {
-                path: "components/nginx/values/DoubleValueItem",
+                path: "nginx/values/DoubleValueItem",
                 params: {
                     name: "listen",
                     value1type: "int",
@@ -32,7 +32,7 @@ const storage = {
                     "background-color": "#663399",
                     "color": "#eee"
                 },
-                "tips": "This is a listen config",
+                "desc": "This is a listen config",
                 "cond": {}
             }
         }
