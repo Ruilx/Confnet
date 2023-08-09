@@ -21,12 +21,12 @@ const storage = {
             item: {         // scene上展示的信息
                 module: "common/value", // modules中需要载入的组件
                 params: {               // 提供的参数
-                    name: "A Container",
+                    title: "A Container",
                 },
             },
-            library: {
-                "title": "listen",
-                "desc": "This is a listen config",
+            library: {  // 库中设置
+                "title": "listen", // 标题
+                "desc": "This is a listen config", // 解释
                 "card-style": {
                     "background-color": "#663399",
                     "color": "#eee"
