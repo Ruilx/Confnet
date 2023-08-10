@@ -2,11 +2,15 @@
 <a-card
     :hoverable="true"
     :bordered="true"
-    :body-style="{padding:0}"
+    size="small"
+    :style="cardStyle"
     class="library-item"
+    :class="item.library.class"
 >
-    <p class="r-draggable-value">{{ item.library.name }}</p>
-    <p><small>{{ item.library.desc }}</small></p>
+    <div class="r-draggable-value">
+        <p>{{ item.library.title }}</p>
+        <small>{{ item.library.desc }}</small>
+    </div>
 </a-card>
 </template>
 
@@ -20,9 +24,17 @@ export default {
         }
     },
     data(){
-        return {}
+        return {
+            cardStyle: {
+                padding: 0,
+            }
+        }
+    },
+    created() {
+        Object.keys(this.item.library.cardStyle).forEach((e) => {
+            this.cardStyle[e] = this.item.library.cardStyle[e]
+        })
     }
-
 }
 </script>
 

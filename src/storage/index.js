@@ -1,6 +1,7 @@
 const storage = {
     scene: {
-        root: [1],
+        root: 4,
+        content: [],
     },
     items: [
         {
@@ -25,18 +26,53 @@ const storage = {
                 },
             },
             library: {  // 库中设置
-                "title": "listen", // 标题
-                "desc": "This is a listen config", // 解释
-                "card-style": {
+                title: "listen", // 标题
+                desc: "This is a listen config", // 解释
+                cardStyle: {  // 卡片css
                     "background-color": "#663399",
                     "color": "#eee"
                 },
-                "cond": {}
+                class: "", // 卡片class
+                cond: {}
             }
-        }
+        },{
+            id: 3,
+            name: "root",
+            type: "value",
+            item: {
+                module: "common/value",
+                params: {
+                    title: "A CONTAINER",
+                },
+            },
+            library: {
+                title: "root",
+                desc: "This is a root config",
+                cardStyle: {
+                    "background-color": '#66CCFF',
+                    "color": "#eee"
+                },
+                class: "",
+                cond: {}
+            }
+        },{
+            id: 4,
+            name: "demo",
+            type: "container",
+            item: {
+                module: "demo",
+                params: {},
+            },
+            library: {
+                show: false,
+            }
+        },
     ],
     modules: {
         "common/container": "common/containers/CommonContainer",
         "common/value": "common/values/CommonValue",
+        "demo": "DemoWidget"
     }
 }
+
+export default storage

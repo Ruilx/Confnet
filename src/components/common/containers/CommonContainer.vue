@@ -6,21 +6,21 @@
         :list="items"
         :="options"
     >
-        <template #item="{e, i}">
+        <template #item="{element}">
             <a-card
-                v-if="e.type==='container'"
+                v-if="element.type==='container'"
                 class="r-draggable-card"
-                :title="e.name"
+                :title="element.name"
                 :bordered="true"
                 :hoverable="true"
-                :class="e.draggable ? 'r-draggable' : ''"
+                :class="element.draggable ? 'r-draggable' : ''"
                 size="small"
             >
                 <keep-alive>
-                    <component :is="subItem" :item="e"/>
+                    <component :is="subItem" :item="element"/>
                 </keep-alive>
             </a-card>
-            <CommonValue v-else :item="e" />
+            <CommonValue v-else :item="element" />
         </template>
 
     </draggable>
@@ -74,5 +74,9 @@ export default defineComponent({
 
 .r-draggable-card {
     margin-bottom: 10px;
+}
+
+item-ghost{
+    opacity: .5;
 }
 </style>
