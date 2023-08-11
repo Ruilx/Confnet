@@ -11,6 +11,27 @@ const util = {
             return e
         }
     },
+
+    findIndexById(array, id){
+        try{
+            array.forEach((v, i) => {
+                if(v.id === id){
+                    throw i
+                }
+            })
+            throw -1
+        }catch(i){
+            return i
+        }
+    },
+
+    deleteByIndex(array, index){
+        if(index < array.length){
+            array.splice(index, 1)
+            return true
+        }
+        return false
+    }
 }
 
 export default util

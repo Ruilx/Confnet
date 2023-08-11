@@ -6,7 +6,7 @@
         </a-layout-sider>
         <a-layout-content>
             <keep-alive>
-                <component :is="subItem" ></component>
+                <component :is="subItem" />
             </keep-alive>
         </a-layout-content>
     </a-layout>
@@ -29,7 +29,7 @@ export default defineComponent({
             drag: false,
             scene: [],
             library: [],
-            subItem: "",
+            subItem: {},
         }
     },
     created() {
@@ -39,7 +39,7 @@ export default defineComponent({
                 this.library.push(e)
             }
         });
-        // let module = util.findById(storage.scene.root, storage.items)
+        //let moduleIndex = util.findIndexById(storage.items, storage.scene.root)
         // if(typeof module != "object"){
         //     throw "Cannot find id:" + storage.scene.root + " in items.";
         // }
@@ -48,7 +48,7 @@ export default defineComponent({
         //     throw "Cannot find path:" + componentPath + " in modules.";
         // }
         let componentPath = "DemoWidget"
-        this.subItem = markRaw(defineAsyncComponent(() => {import("../components/" + componentPath + ".vue")}))
+        this.subItem = markRaw(defineAsyncComponent(() => {import(/* @vite-ignore */"../components/" + componentPath + ".vue")}))
     }
 })
 </script>
