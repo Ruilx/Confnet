@@ -49,6 +49,7 @@ export default defineComponent({
         // }
         let componentPath = "DemoWidget"
         this.subItem = markRaw(defineAsyncComponent(() => {import(/* @vite-ignore */"../components/" + componentPath + ".vue")}))
+        console.log(this.subItem)
     }
 })
 </script>
