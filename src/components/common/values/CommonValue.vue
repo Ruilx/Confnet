@@ -6,12 +6,14 @@
         :class="item.draggable ? 'r-draggable': ''"
         class="value-item"
     >
-        <span class="r-draggable-value">{{ item.item.name }}</span>
+        <span class="r-draggable-value">{{ item.name }}</span>
     </a-card>
 </template>
 
 <script>
-export default {
+import {defineComponent} from "vue";
+
+export default defineComponent({
     name: "CommonValue",
     props: {
         item: {
@@ -23,7 +25,7 @@ export default {
         return {}
     },
     computed: {}
-}
+})
 </script>
 
 <style scoped lang="less">

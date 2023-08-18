@@ -28,10 +28,11 @@
 </template>
 
 <script>
+import {defineComponent} from "vue";
 import draggable from 'vuedraggable'
 import ValueItem from "./ValueItem.vue"
 
-export default {
+export default defineComponent({
     name: "ContainerItem",
     props: {
         items: {
@@ -58,7 +59,7 @@ export default {
     methods: {},
     computed: {}
 
-}
+})
 </script>
 
 <style scoped>

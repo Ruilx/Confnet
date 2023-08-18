@@ -1,6 +1,6 @@
 const storage = {
     scene: {
-        root: 4,
+        root: 1,
         content: [],
     },
     items: [

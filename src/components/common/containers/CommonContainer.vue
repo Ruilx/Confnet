@@ -1,46 +1,43 @@
 <template>
-    <draggable
+    <a-card
         class="container-item"
-        tag="div"
-        item-key="id"
-        :list="items"
-        :="options"
+        :title="item.name"
+        :bordered="true"
+        :hoverable="true"
+        :class="item.draggable ? 'r-draggable' : ''"
+        size="small"
     >
-        <template #item="{element}">
-            <a-card
-                v-if="element.type==='container'"
-                class="r-draggable-card"
-                :title="element.name"
-                :bordered="true"
-                :hoverable="true"
-                :class="element.draggable ? 'r-draggable' : ''"
-                size="small"
-            >
+        <draggable
+            class="container-item"
+            tag="div"
+            item-key="id"
+            :list="item.items"
+            :="options"
+        >
+            <template #item="{ element, index }">
                 <keep-alive>
-                    <component :is="subItem" :item="element"/>
+                    <Widget :item="element"/>
                 </keep-alive>
-            </a-card>
-            <CommonValue v-else :item="element" />
-        </template>
+            </template>
 
-    </draggable>
+        </draggable>
+    </a-card>
+
 </template>
 
 <script>
-import {defineComponent, defineAsyncComponent, markRaw} from "vue"
+import {defineComponent} from "vue"
 import draggable from "vuedraggable";
-import CommonValue from "../values/CommonValue.vue";
+import Widget from "../../Widget.vue";
 
 export default defineComponent({
     name: "CommonContainer",
-    components: {CommonValue, draggable},
+    components: {Widget, draggable},
     props: {
-        items: {required: true, type: Array,}
+        item: {required: true, type: Object,}
     },
     data() {
         return {
-            dragging: false,
-            subItem: {},
             options: {
                 animation: 200,
                 group: "a1",
@@ -50,14 +47,6 @@ export default defineComponent({
             }
         }
     },
-    computed: {},
-    created() {
-        this.dragging = false
-        this.subItem = markRaw(defineAsyncComponent(() => import("../../" + this.item.item.path + ".vue")))
-    },
-    methods: {
-
-    }
 })
 </script>
 
@@ -65,18 +54,5 @@ export default defineComponent({
 .container-item{
     min-height:30px;
     user-select: none;
-
-    .r-draggable-card{
-        padding-left: 8px;
-        font-family: Consolas, "Microsoft YaHei", monospace;
-    }
-}
-
-.r-draggable-card {
-    margin-bottom: 10px;
-}
-
-item-ghost{
-    opacity: .5;
 }
 </style>

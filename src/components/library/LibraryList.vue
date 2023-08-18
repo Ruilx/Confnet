@@ -13,7 +13,7 @@
             </template>
 
             <template #header>
-                <div>Library Items</div>
+                <h1>Library Items</h1>
             </template>
         </draggable>
     </div>
